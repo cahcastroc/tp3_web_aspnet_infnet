@@ -1,0 +1,38 @@
+﻿@model List<tp3_web_aspnet_infnet.Models.Pessoa>
+@{
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td><strong>Id</strong></td>
+            <td><strong>Nome</strong></td>
+            <td><strong>Sobrenome</strong></td>
+            <td><strong>Data Nascimento</strong></td>
+            <td><strong>Ação</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var pessoa in Model)
+            {
+                <tr>
+                    <td>@pessoa.Id</td>
+                    <td>@pessoa.Nome</td>
+                    <td>@pessoa.Sobrenome</td>
+                    <td>@pessoa.Aniversario</td>
+
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", "Pessoa", new { Id = pessoa.Id})
+                        @Html.ActionLink("Editar", "Edit", "Pessoa", new { Id = pessoa.Id})
+                    </td>
+
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Novo Cadastro", "Create")
+</div>
