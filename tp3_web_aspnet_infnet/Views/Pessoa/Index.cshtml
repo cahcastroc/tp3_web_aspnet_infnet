@@ -2,9 +2,11 @@
 @{
 }
 
+
+
 <table class="table table-bordered">
-    <thead>
-        <tr>
+    <thead class="text-center">
+        <tr >
             <td><strong>Id</strong></td>
             <td><strong>Nome</strong></td>
             <td><strong>Sobrenome</strong></td>
@@ -12,36 +14,36 @@
             <td><strong>Ação</strong></td>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         @{
 
-            @foreach (var item in Model)
+            @foreach (var pessoa in Model)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Id)
+                        @pessoa.Id
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
+                        @pessoa.Nome
                     </td>
                      <td>
-                        @Html.DisplayFor(modelItem => item.Sobrenome)
+                        @pessoa.Sobrenome
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Aniversario)
+                        @pessoa.Aniversario
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-info">
-
-                            @Html.ActionLink("Editar", "Edit", item)
+                        
+                            @Html.ActionLink("Editar", "Edit", pessoa)
                         </button>
                         <button type="button" class="btn btn-outline-success">
 
-                            @Html.ActionLink("Detalhes", "Details", new { Id = item.Id })
+                            @Html.ActionLink("Detalhes", "Details", new { Id = pessoa.Id })
                         </button>
                         <button type="button" class="btn btn-outline-danger">
 
-                            @Html.ActionLink("Deletar", "Delete", new { Id = item.Id })
+                            @Html.ActionLink("Deletar", "Delete", new { Id = pessoa.Id })
                         </button>
                     </td>
                 </tr>
@@ -53,8 +55,19 @@
 <div class="text-center">
     <button type="button" class="btn btn-outline-primary">
     @Html.ActionLink("Novo Cadastro", "Create")
-    </button>
-    <button type="button" class="btn btn-outline-primary">
-        @Html.ActionLink("Buscar Pessoa", "Create")
-    </button>
+    </button> 
 </div>
+<br />
+<br />
+<div class="text-md-center">
+    <form method="post" action="/Pessoa/Busca">
+        @Html.AntiForgeryToken()     
+        <input type="text" class="form-control" placeholder="Busca por nome" name="Nome">
+        <br />
+        <input type="submit" value="Buscar" class="btn btn-outline-dark" />
+    </form>
+</div>
+
+
+   
+

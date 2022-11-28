@@ -37,8 +37,7 @@ namespace tp3_web_aspnet_infnet.Controllers
             try
             {
                 DAPessoa.AdicionarPessoa(pessoa);
-
-                //return View("Index", DAPessoa.Pessoas);
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -67,9 +66,8 @@ namespace tp3_web_aspnet_infnet.Controllers
             }
             catch
             {
-                return View();
-            
-                }          
+                return View();            
+            }          
         }
 
         // GET: PessoaController/Delete/5  -OK
@@ -94,5 +92,14 @@ namespace tp3_web_aspnet_infnet.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Busca(string nome)
+        {
+            var lista = DAPessoa.BuscaPessoaNome(nome);
+            return View(lista);
+        }
+
     }
 }

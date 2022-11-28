@@ -39,8 +39,8 @@
 
     <form method="post">
         @Html.AntiForgeryToken()
-        <input type="submit" value="Sim" class="btn btn-danger" /> |
-        <button type="button" class="btn btn-light">
+        <input type="submit" value="Sim" class="btn btn-outline-danger" /> |
+        <button type="button" class="btn btn-outline-info">
             @Html.ActionLink("Não", "Index")
         </button>
     </form>      

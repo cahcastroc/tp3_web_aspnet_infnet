@@ -1,0 +1,25 @@
+﻿@model tp3_web_aspnet_infnet.Models.Pessoa
+@{
+}
+
+<h1>Editar</h1>
+<hr/>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <label for="Id">Id</label>
+    <input type="number" class="form-control" disabled="disabled" placeholder="@Model.Id" name="Id" required>
+    <label for="Nome">Nome</label>
+    <input type="text" class="form-control" placeholder="@Model.Nome" name="Nome">
+    <label for="Sobrenome">Sobrenome</label>
+    <input type="text" class="form-control" placeholder="@Model.Sobrenome" name="Sobrenome">
+    <label for="Aniversario">Data de nascimento</label>
+    <input type="text" class="form-control" placeholder="@Model.Aniversario" name="Aniversario">
+    <input type="submit" value="Salvar" class="btn btn-primary" />
+
+    <button type="button" class="btn btn-light">
+        @Html.ActionLink("Home", "Index")
+    </button>
+
+</form>
