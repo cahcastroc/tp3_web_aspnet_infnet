@@ -11,14 +11,14 @@
     <label for="Id">Id</label>
     <input type="number" class="form-control" disabled="disabled" placeholder="@Model.Id" name="Id" required>
     <label for="Nome">Nome</label>
-    <input type="text" class="form-control" placeholder="@Model.Nome" name="Nome">
+    <input type="text" class="form-control" placeholder="@Model.Nome" name="Nome" required>
     <label for="Sobrenome">Sobrenome</label>
-    <input type="text" class="form-control" placeholder="@Model.Sobrenome" name="Sobrenome">
+    <input type="text" class="form-control" placeholder="@Model.Sobrenome" name="Sobrenome" required>
     <label for="Aniversario">Data de nascimento</label>
-    <input type="text" class="form-control" placeholder="@Model.Aniversario" name="Aniversario">
-    <input type="submit" value="Salvar" class="btn btn-primary" />
-
-    <button type="button" class="btn btn-light">
+    <input type="text" class="form-control" placeholder="@Model.Aniversario" name="Aniversario" required>
+    <br />
+    <input type="submit" value="Salvar" class="btn btn-outline-success" />
+    <button type="button" class="btn btn-outline-info">
         @Html.ActionLink("Home", "Index")
     </button>
 

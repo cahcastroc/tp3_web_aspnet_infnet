@@ -2,18 +2,17 @@
 }
 <form method="post" action="/Pessoa/Create">
     @Html.AntiForgeryToken() 
-
-    <label for="Id">Id</label>
-    <input type="number" class="form-control" placeholder="Insira um número de identificação" name="Id" required>
+        
     <label for="Nome">Nome</label>
     <input type="text" class="form-control"  placeholder="Nome" name="Nome" required>
     <label for="Sobrenome">Sobrenome</label>
     <input type="text" class="form-control"  placeholder="Sobrenome" name="Sobrenome" required>
     <label for="Aniversario">Data de nascimento</label>
     <input type="text" class="form-control"  placeholder="Data de Nascimento" name="Aniversario" required>
-    <input type="submit" value="Salvar" class="btn btn-primary" />
-
-    <button type="button" class="btn btn-light">
+    <br />
+    <input type="submit" value="Salvar" class="btn btn-outline-success" />
+    
+    <button type="button" class="btn btn-outline-info">
         @Html.ActionLink("Home", "Index")
     </button>
 

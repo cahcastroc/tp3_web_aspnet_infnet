@@ -62,7 +62,7 @@
 <div class="text-md-center">
     <form method="post" action="/Pessoa/Busca">
         @Html.AntiForgeryToken()     
-        <input type="text" class="form-control" placeholder="Busca por nome" name="Nome">
+        <input type="text" class="form-control" placeholder="Busca por nome" name="Nome" required>
         <br />
         <input type="submit" value="Buscar" class="btn btn-outline-dark" />
     </form>

@@ -28,6 +28,11 @@ namespace tp3_web_aspnet_infnet.DataSource
 
         public static void AdicionarPessoa(Pessoa pessoa)
         {
+            if (Pessoas.Count > 0)            
+                pessoa.Id = Pessoas.Max(x => x.Id) + 1;            
+            else            
+                pessoa.Id = 1;
+                       
             Pessoas.Add(pessoa);
         }
 
