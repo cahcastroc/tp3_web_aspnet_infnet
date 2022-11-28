@@ -14,25 +14,47 @@
     </thead>
     <tbody>
         @{
-            foreach (var pessoa in Model)
+
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@pessoa.Id</td>
-                    <td>@pessoa.Nome</td>
-                    <td>@pessoa.Sobrenome</td>
-                    <td>@pessoa.Aniversario</td>
-
                     <td>
-                        @Html.ActionLink("Delete", "Delete", "Pessoa", new { Id = pessoa.Id})
-                        @Html.ActionLink("Editar", "Edit", "Pessoa", new { Id = pessoa.Id})
+                        @Html.DisplayFor(modelItem => item.Id)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Sobrenome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aniversario)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-info">
 
+                            @Html.ActionLink("Editar", "Edit", item)
+                        </button>
+                        <button type="button" class="btn btn-outline-success">
+
+                            @Html.ActionLink("Detalhes", "Details", new { Id = item.Id })
+                        </button>
+                        <button type="button" class="btn btn-outline-danger">
+
+                            @Html.ActionLink("Deletar", "Delete", new { Id = item.Id })
+                        </button>
+                    </td>
                 </tr>
             }
 
         }
     </tbody>
 </table>
-<div>
+<div class="text-center">
+    <button type="button" class="btn btn-outline-primary">
     @Html.ActionLink("Novo Cadastro", "Create")
+    </button>
+    <button type="button" class="btn btn-outline-primary">
+        @Html.ActionLink("Buscar Pessoa", "Create")
+    </button>
 </div>

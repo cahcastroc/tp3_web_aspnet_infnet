@@ -7,42 +7,20 @@ using tp3_web_aspnet_infnet.Models;
 namespace tp3_web_aspnet_infnet.Controllers
 {
     public class PessoaController : Controller
-    {
+    {               
 
-        public readonly DAPessoa daPessoa;
-
-        // GET: pessoa
-        public PessoaController(DAPessoa daPessoa)
-        {
-            this.daPessoa = daPessoa;
-        }
-
-
-        //Tabela
+        //Tabela -OK
         public ActionResult Index()
         {
-            return View(daPessoa.pessoas);
+            return View(DAPessoa.Pessoas);
         }
 
-        // GET: pessoa/details/id
-        public ActionResult Details(int? id)
+        // GET: pessoa/details/id -OK 
+        public ActionResult Details(int id)
         {
+            var pessoa = DAPessoa.BuscaPessoaPorId(id);
 
-
-            if (id != null)
-            {
-                foreach (var pessoa in daPessoa.pessoas)
-                {
-                    if (pessoa.Id == id)
-                    {
-                        return View(pessoa);
-                    }
-                }
-
-            }        
-              
-
-            return View();
+            return View(pessoa);
         }
 
         //Forms
@@ -51,35 +29,16 @@ namespace tp3_web_aspnet_infnet.Controllers
             return View();
         }
 
-        // POST: pessoa/create
+        // POST: pessoa/create -OK
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Pessoa pessoa)
         {
             try
             {
-                daPessoa.pessoas.Add(pessoa);
-                return View("Index", daPessoa.pessoas);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
+                DAPessoa.AdicionarPessoa(pessoa);
 
-        // GET: PessoaController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: PessoaController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
+                //return View("Index", DAPessoa.Pessoas);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -88,30 +47,52 @@ namespace tp3_web_aspnet_infnet.Controllers
             }
         }
 
-        // GET: PessoaController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: PessoaController/Edit/5
+        public ActionResult Edit(int id)
         {
-
-            daPessoa.pessoas.Remove(
-                    daPessoa.pessoas.First(p => p.Id == id)
-
-                );
-            return View("Index", daPessoa.pessoas);
+            var pessoa = DAPessoa.BuscaPessoaPorId(id); 
+            return View(pessoa);
+            
         }
 
-        //// POST: PessoaController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: PessoaController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Pessoa pessoa)
+        {
+            try
+            {
+                DAPessoa.EditaPessoa(pessoa);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            
+                }          
+        }
+
+        // GET: PessoaController/Delete/5  -OK
+        public ActionResult Delete(int id)       {
+
+
+            return View(DAPessoa.BuscaPessoaPorId(id));
+        }
+
+        // POST: PessoaController/Delete/5   -OK
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Pessoa pessoa)
+        {
+            try
+            {
+                DAPessoa.DeletaPessoa(pessoa.Id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

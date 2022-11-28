@@ -2,25 +2,59 @@
 
 namespace tp3_web_aspnet_infnet.DataSource
 {
-    public class DAPessoa
+    public static class DAPessoa
     {
-        public List<Pessoa> pessoas { get; set; }
-
-        public DAPessoa()
-        {
-            pessoas = new List<Pessoa>();
-
-            var pessoa = new Pessoa()
+        public static List<Pessoa> Pessoas { get; set; } =  new List<Pessoa>
             {
+                new Pessoa
+                {
                 Id = 1,
                 Nome = "Camila",
                 Sobrenome = "Castro",
                 Aniversario = "19/06/1990"
+                }
             };
-            pessoas.Add(pessoa);                      
 
-
+        
+        public static List<Pessoa> ListaTodos() {
+            return Pessoas;
         }
         
+        public static Pessoa BuscaPessoaPorId(int id)
+        {
+            var pessoa = Pessoas.FirstOrDefault(x => x.Id == id);
+            return pessoa;
+        }
+
+        public static void AdicionarPessoa(Pessoa pessoa)
+        {
+            Pessoas.Add(pessoa);
+        }
+
+
+        public static List<Pessoa> BuscaPessoaNome(string nome)
+        {
+            var lista = Pessoas.Where(p => p.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase)).ToList();
+            return lista;
+        }
+
+        public static void EditaPessoa(Pessoa pessoa)
+        {
+            var pessoaEdit = BuscaPessoaPorId(pessoa.Id);
+            if (pessoaEdit != null)
+            {
+                pessoaEdit.Nome = pessoa.Nome;
+                pessoaEdit.Sobrenome = pessoa.Sobrenome;
+                pessoaEdit.Aniversario = pessoa.Aniversario;
+            }
+        }
+        
+        public static void DeletaPessoa(int id)
+        {
+            var pessoaDelete = BuscaPessoaPorId(id);        
+            Pessoas.Remove(pessoaDelete);
+            
+        }
+
     }
 }
